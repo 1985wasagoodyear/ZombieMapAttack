@@ -13,7 +13,29 @@ import UIKit
 import MapKit
 
 class Zombie {
+
+    var id: Int
     
+    // MKAnnotation - protocol for annotations
+    // MKPointAnnotation - basic annotation class
+    var annotation: MKPointAnnotation
+
+    init(id: Int, annotation: MKPointAnnotation) {
+        self.id = id
+        self.annotation = annotation
+    }
+
+}
+
+extension Zombie: Hashable {
+    
+    static func == (lhs: Zombie, rhs: Zombie) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 class ZombieViewModel {
@@ -41,6 +63,12 @@ class ZombieViewModel {
     }
 }
 
+extension CLLocationCoordinate2D {
+    static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}
+
 class ZombieMapViewController: UIViewController {
 
     // MARK: - XIB Outlets
@@ -54,9 +82,6 @@ class ZombieMapViewController: UIViewController {
     
     // MARK: - Map Annotation Properties
     
-    // MKAnnotation - protocol for annotations
-    // MKPointAnnotation - basic annotation class
-    var annotations = [MKPointAnnotation]()
     
     // MARK: - UIViewController Lifecycle
     
@@ -92,6 +117,17 @@ extension ZombieMapViewController: MKMapViewDelegate {
         return annotationView
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        vm.zombies.removeAll {
+            guard let viewAnnotation = view.annotation else { return false }
+            let res = $0.annotation.coordinate == viewAnnotation.coordinate
+            if res == true {
+                mapView.removeAnnotation($0.annotation)
+            }
+            return res
+        }
+    }
+    
 }
 
 extension ZombieMapViewController: LMDelegate {
@@ -116,45 +152,42 @@ extension ZombieMapViewController {
     // only appear once
     // in a circle around you
     func showTempZombies(_ location: CLLocation) {
-        if annotations.isEmpty == false {
+        if vm.zombies.isEmpty == false {
             return
         }
-        var tempAnnotations = [MKPointAnnotation]()
         
         // 4 zombies
         let first = MKPointAnnotation()
         var firstCoord = location.coordinate
         firstCoord.latitude += .degrees(miles: 0.5)
         first.coordinate = firstCoord
-        tempAnnotations.append(first)
+        let firstZombie = Zombie(id: 1, annotation: first)
         
         let second = MKPointAnnotation()
         var secondCoord = location.coordinate
         secondCoord.longitude += .degrees(miles: 0.5)
         second.coordinate = secondCoord
-        tempAnnotations.append(second)
+        let secondZombie = Zombie(id: 2, annotation: second)
         
         let third = MKPointAnnotation()
         var thirdCoord = location.coordinate
         thirdCoord.latitude -= .degrees(miles: 0.5)
         third.coordinate = thirdCoord
-        tempAnnotations.append(third)
+        let thirdZombie = Zombie(id: 3, annotation: third)
         
         let fourth = MKPointAnnotation()
         var fourthCoord = location.coordinate
         fourthCoord.longitude -= .degrees(miles: 0.5)
         fourth.coordinate = fourthCoord
-        tempAnnotations.append(fourth)
+        let fourthZombie = Zombie(id: 4, annotation: fourth)
         
-        annotations = tempAnnotations
-        
-        // add our zombies to the map
-        mapView.addAnnotations(annotations)
+        vm.zombies = [firstZombie, secondZombie, thirdZombie, fourthZombie]
+        showZombies()
     }
     
     func showZombies() {
-        
-        
+        // add our zombies to the map
+        mapView.addAnnotations(vm.zombies.map { $0.annotation })
     }
     
     func goToLasVegas() {
