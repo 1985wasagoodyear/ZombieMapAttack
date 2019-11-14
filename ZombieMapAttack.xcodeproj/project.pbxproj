@@ -17,9 +17,11 @@
 		3FF51DD522BA92550032FB46 /* CLLocation+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF51DD422BA92550032FB46 /* CLLocation+Utility.swift */; };
 		3FF51DD722BA97760032FB46 /* zombie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FF51DD622BA97760032FB46 /* zombie.jpg */; };
 		3FF51DD922BA97F40032FB46 /* zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF51DD822BA97F40032FB46 /* zombie.png */; };
+		C56434F55859D7B04AA44C8B /* Pods_ZombieMapAttack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE3F5E57748CF7807AF7DF1 /* Pods_ZombieMapAttack.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D7FC762B541445A82E84615 /* Pods-ZombieMapAttack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZombieMapAttack.debug.xcconfig"; path = "Target Support Files/Pods-ZombieMapAttack/Pods-ZombieMapAttack.debug.xcconfig"; sourceTree = "<group>"; };
 		3FF51DB622BA7B7C0032FB46 /* ZombieMapAttack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZombieMapAttack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF51DB922BA7B7C0032FB46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF51DBB22BA7B7C0032FB46 /* ZombieMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieMapViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,8 @@
 		3FF51DD422BA92550032FB46 /* CLLocation+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Utility.swift"; sourceTree = "<group>"; };
 		3FF51DD622BA97760032FB46 /* zombie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zombie.jpg; sourceTree = "<group>"; };
 		3FF51DD822BA97F40032FB46 /* zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie.png; sourceTree = "<group>"; };
+		ADE3F5E57748CF7807AF7DF1 /* Pods_ZombieMapAttack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZombieMapAttack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F547ED2885ADAD429FF07A5C /* Pods-ZombieMapAttack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZombieMapAttack.release.xcconfig"; path = "Target Support Files/Pods-ZombieMapAttack/Pods-ZombieMapAttack.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,17 +46,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C56434F55859D7B04AA44C8B /* Pods_ZombieMapAttack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A83FE174A70EB5E81CB7942 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D7FC762B541445A82E84615 /* Pods-ZombieMapAttack.debug.xcconfig */,
+				F547ED2885ADAD429FF07A5C /* Pods-ZombieMapAttack.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3FF51DAD22BA7B7C0032FB46 = {
 			isa = PBXGroup;
 			children = (
 				3FF51DB822BA7B7C0032FB46 /* ZombieMapAttack */,
 				3FF51DB722BA7B7C0032FB46 /* Products */,
+				2A83FE174A70EB5E81CB7942 /* Pods */,
+				4DCD2307CBE9F2D24DFA78AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +118,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		4DCD2307CBE9F2D24DFA78AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADE3F5E57748CF7807AF7DF1 /* Pods_ZombieMapAttack.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FF51DC822BA7B7D0032FB46 /* Build configuration list for PBXNativeTarget "ZombieMapAttack" */;
 			buildPhases = (
+				56800EBDDB9E381D0E2FC213 /* [CP] Check Pods Manifest.lock */,
 				3FF51DB222BA7B7C0032FB46 /* Sources */,
 				3FF51DB322BA7B7C0032FB46 /* Frameworks */,
 				3FF51DB422BA7B7C0032FB46 /* Resources */,
+				50EFB807F9443C52BE7CFADE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,6 +197,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50EFB807F9443C52BE7CFADE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZombieMapAttack/Pods-ZombieMapAttack-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZombieMapAttack/Pods-ZombieMapAttack-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZombieMapAttack/Pods-ZombieMapAttack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56800EBDDB9E381D0E2FC213 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZombieMapAttack-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3FF51DB222BA7B7C0032FB46 /* Sources */ = {
@@ -323,6 +392,7 @@
 		};
 		3FF51DC922BA7B7D0032FB46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D7FC762B541445A82E84615 /* Pods-ZombieMapAttack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -344,6 +414,7 @@
 		};
 		3FF51DCA22BA7B7D0032FB46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F547ED2885ADAD429FF07A5C /* Pods-ZombieMapAttack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

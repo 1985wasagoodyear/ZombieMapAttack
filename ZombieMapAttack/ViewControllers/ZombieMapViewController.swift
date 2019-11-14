@@ -12,6 +12,8 @@ import UIKit
 // import CoreLocation
 import MapKit
 
+import Disintegrate
+
 class Zombie {
 
     var id: Int
@@ -117,15 +119,27 @@ extension ZombieMapViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    /// called if selection is tapped
+    func mapView(_ mapView: MKMapView,
+                 didSelect view: MKAnnotationView) {
+        guard let viewAnnotation = view.annotation else { return }
         vm.zombies.removeAll {
-            guard let viewAnnotation = view.annotation else { return false }
             let res = $0.annotation.coordinate == viewAnnotation.coordinate
             if res == true {
-                mapView.removeAnnotation($0.annotation)
+                view.disintegrate(direction: .random(),
+                                  estimatedTrianglesCount: 300) {
+                                    // remove it from my array and the map
+                                    mapView.removeAnnotation(viewAnnotation)
+                }
             }
             return res
         }
+        
+    }
+    
+    /// called if selection is untapped
+    func mapView(_ mapView: MKMapView,
+                 didDeselect view: MKAnnotationView) {
     }
     
 }
